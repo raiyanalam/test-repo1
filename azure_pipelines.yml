@@ -1,0 +1,50 @@
+stages:
+- stage: Build
+  jobs:
+  - job: docker_build
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    steps:    
+    - script: echo build and push to docker!
+
+- stage: Dev
+  dependsOn: Build
+  jobs:
+  - job: Deploy_job1  
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    steps: 
+    - script: echo deploying to test1...
+  - job: Deploy_job2
+    dependsOn: Deploy_job1
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    steps: 
+    - script: echo job2...
+  - job: Deploy_job3
+    dependsOn: Deploy_job1
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    steps: 
+    - script: echo job3...
+  - job: Deploy_to_Dev_Resource
+    dependsOn:
+    - Deploy_job2
+    - Deploy_job3    
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    steps: 
+    - script: echo deploying to dev resource...
+
+- stage: Prod
+  dependsOn: dev
+  jobs:
+  - deployment: deploy_to_prod    
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    environment: production    # create environment and/or record deployments
+    strategy:                  # runOnce/blue green/rolling/canary, with lifecycle hooks viz, pre/post healthcheck, swap etc
+      runOnce:                 # default strategy
+        deploy:
+          steps:       
+          - script: echo deploy to prod environement
