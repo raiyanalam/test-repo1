@@ -38,3 +38,13 @@ stages:
         deploy:
           steps:       
           - script: echo deploy to prod environement
+  - deployment: deploy_to_prod2    
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    environment: production2    # create environment and/or record deployments
+    strategy:                  # runOnce/blue green/rolling/canary, with lifecycle hooks viz, pre/post healthcheck, swap etc
+      runOnce:                 # default strategy
+        deploy:
+          steps:       
+          - script: echo deploy to prod environement2
+
