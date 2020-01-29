@@ -18,20 +18,11 @@ stages:
     steps: 
     - script: echo job2...
   - job: Deploy_job3
-    dependsOn: Deploy_job1
+    dependsOn: Deploy_job2
     pool:
       vmImage: 'Ubuntu 16.04'
     steps: 
     - script: echo job3...
-  - job: Deploy_to_Dev_Resource
-    dependsOn:
-    - Deploy_job2
-    - Deploy_job3    
-    pool:
-      vmImage: 'Ubuntu 16.04'
-    steps: 
-    - script: echo deploying to dev resource...
-
 - stage: Prod
   dependsOn: dev
   jobs:
