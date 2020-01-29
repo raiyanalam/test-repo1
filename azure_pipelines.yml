@@ -38,6 +38,9 @@ stages:
         deploy:
           steps:       
           - script: echo deploy to prod environement
+- stage: Prod2
+  dependsOn: Staging
+  jobs:
   - deployment: deploy_to_prod2    
     pool:
       vmImage: 'Ubuntu 16.04'
