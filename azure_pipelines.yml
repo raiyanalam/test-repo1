@@ -7,7 +7,7 @@ stages:
     steps:    
     - script: echo build and push to docker!
 
-- stage: Stage
+- stage: Staging
   dependsOn: Build
   jobs:
   - job: Deploy_job1
@@ -27,7 +27,7 @@ stages:
     steps: 
     - script: echo job3...
 - stage: Prod
-  dependsOn: dev
+  dependsOn: Staging
   jobs:
   - deployment: deploy_to_prod    
     pool:
