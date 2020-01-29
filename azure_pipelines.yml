@@ -11,16 +11,16 @@ stages:
   dependsOn: Build
   jobs:
   - job: Deploy_job1
-    display name: configure
+    displayName: configure
     steps: 
     - script: echo deploying to test1...
   - job: Deploy_job2
     dependsOn: Deploy_job1  
-    display name: Wait for sanity checks
+    displayName: Wait for sanity checks
     steps: 
     - script: echo job2...
   - job: Deploy_job3
-    display name: deploy
+    displayName: deploy
     dependsOn: Deploy_job2
     pool:
       vmImage: 'Ubuntu 16.04'
