@@ -7,31 +7,25 @@ stages:
     steps:    
     - script: echo build and push to docker!
 
-- stage: Dev
+- stage: Stage
   dependsOn: Build
   jobs:
-  - job: Deploy_job1      
+  - job: Deploy_job1
+    display name: configure
     steps: 
     - script: echo deploying to test1...
   - job: Deploy_job2
-    dependsOn: Deploy_job1    
+    dependsOn: Deploy_job1  
+    display name: Wait for sanity checks
     steps: 
     - script: echo job2...
   - job: Deploy_job3
-    dependsOn: Deploy_job1
+    display name: deploy
+    dependsOn: Deploy_job2
     pool:
       vmImage: 'Ubuntu 16.04'
     steps: 
     - script: echo job3...
-  - job: Deploy_to_Dev_Resource
-    dependsOn:
-    - Deploy_job2
-    - Deploy_job3    
-    pool:
-      vmImage: 'Ubuntu 16.04'
-    steps: 
-    - script: echo deploying to dev resource...
-
 - stage: Prod
   dependsOn: dev
   jobs:
