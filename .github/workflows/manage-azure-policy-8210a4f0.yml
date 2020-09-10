@@ -1,0 +1,21 @@
+name: manage-azure-policy-8210a4f0
+on:
+  push:
+    paths:
+      - 'policies/Audit_HTTPS_only_access_for_a_Web_Application_5ef3cc87-89f3-4c8a-bbfa-76b889c386c0/**'
+      - .github/workflows/manage-azure-policy-8210a4f0.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_8210a4f0}}
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/Audit_HTTPS_only_access_for_a_Web_Application_5ef3cc87-89f3-4c8a-bbfa-76b889c386c0/**

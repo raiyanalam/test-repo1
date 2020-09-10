@@ -1,0 +1,32 @@
+{
+ "sku": {
+  "name": "A0",
+  "tier": "Free"
+ },
+ "properties": {
+  "displayName": "Audit HTTPS only access for a Web Application for testEnvironment",
+  "policyDefinitionId": "/subscriptions/afc11291-9826-46be-b852-70349146ddf8/providers/Microsoft.Authorization/policyDefinitions/5ef3cc87-89f3-4c8a-bbfa-76b889c386c0",
+  "scope": "/subscriptions/afc11291-9826-46be-b852-70349146ddf8",
+  "notScopes": [],
+  "parameters": {},
+  "metadata": {
+   "assignedBy": "Raiyan Alam",
+   "parameterScopes": {},
+   "createdBy": "0845db2a-7e64-419d-b9f4-aecf1b46b39a",
+   "createdOn": "2020-09-10T04:57:27.3316034Z",
+   "updatedBy": "fb0877b6-ba36-481c-8d6a-c5b2ca43278d",
+   "updatedOn": "2020-09-10T04:59:16.764001Z",
+   "gitHubPolicy": {
+    "digest": "cb2c3df5a6c76f47ff90723b0bb284009186be57",
+    "repoName": "raiyanalam/projectTest",
+    "commitSha": "b760c7641327748af81a5b3b03acba17ef73ef7e",
+    "runUrl": "https://github.com/raiyanalam/projectTest/actions/runs/247464318",
+    "filepath": "policies/Audit_HTTPS_only_access_for_a_Web_Application_5ef3cc87-89f3-4c8a-bbfa-76b889c386c0/assign.Audit_HTTPS_only_access_for_a_Web_Application_for_testEnvironment_c3962630b4c64187ac194e67.json"
+   }
+  },
+  "enforcementMode": "Default"
+ },
+ "id": "/subscriptions/afc11291-9826-46be-b852-70349146ddf8/providers/Microsoft.Authorization/policyAssignments/c3962630b4c64187ac194e67",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "c3962630b4c64187ac194e67"
+}

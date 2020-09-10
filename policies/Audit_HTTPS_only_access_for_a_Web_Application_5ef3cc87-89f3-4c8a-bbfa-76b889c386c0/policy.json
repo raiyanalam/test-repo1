@@ -1,0 +1,85 @@
+{
+ "properties": {
+  "displayName": "Audit HTTPS only access for a Web Application",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.",
+  "metadata": {
+   "category": "Security Center",
+   "gitHubPolicy": {
+    "digest": "1f715ab8e882c68072d10978219fc670f26ddbdc",
+    "repoName": "raiyanalam/projectTest",
+    "commitSha": "b760c7641327748af81a5b3b03acba17ef73ef7e",
+    "runUrl": "https://github.com/raiyanalam/projectTest/actions/runs/247464318",
+    "filepath": "policies/Audit_HTTPS_only_access_for_a_Web_Application_5ef3cc87-89f3-4c8a-bbfa-76b889c386c0"
+   },
+   "createdBy": null,
+   "createdOn": null,
+   "updatedBy": "fb0877b6-ba36-481c-8d6a-c5b2ca43278d",
+   "updatedOn": "2020-09-10T04:59:16.5841251Z"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "AuditIfNotExists",
+     "Disabled"
+    ],
+    "defaultValue": "AuditIfNotExists"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "microsoft.Web/sites"
+     },
+     {
+      "anyOf": [
+       {
+        "field": "kind",
+        "equals": "app"
+       },
+       {
+        "field": "kind",
+        "equals": "WebApp"
+       },
+       {
+        "field": "kind",
+        "equals": "app,linux"
+       },
+       {
+        "field": "kind",
+        "equals": "app,linux,container"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": {
+     "type": "Microsoft.Security/complianceResults",
+     "name": "EnforceHttps",
+     "existenceCondition": {
+      "field": "Microsoft.Security/complianceResults/resourceStatus",
+      "in": [
+       "Monitored",
+       "NotApplicable",
+       "OffByPolicy",
+       "Healthy"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "id": "/subscriptions/afc11291-9826-46be-b852-70349146ddf8/providers/Microsoft.Authorization/policyDefinitions/5ef3cc87-89f3-4c8a-bbfa-76b889c386c0",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "5ef3cc87-89f3-4c8a-bbfa-76b889c386c0"
+}
